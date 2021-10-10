@@ -1,12 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
     ];
 
@@ -16,11 +12,6 @@
       efiSysMountPoint = "/boot";
     };
     grub = {
-      # despite what the configuration.nix manpage seems to indicate,
-      # as of release 17.09, setting device to "nodev" will still call
-      # `grub-install` if efiSupport is true
-      # (the devices list is not used by the EFI grub install,
-      # but must be set to some value in order to pass an assert in grub.nix)
       devices = [ "nodev" ];
       efiSupport = true;
       enable = true;
@@ -44,9 +35,6 @@
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.enp34s0.useDHCP = true;
 
@@ -65,7 +53,6 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Enable the Plasma 5 Desktop Environment.
   services.xserver.desktopManager.cinnamon.enable = true;
   services.xserver.displayManager.lightdm.enable = true;
   services.cinnamon.apps.enable = true;
@@ -142,6 +129,7 @@
      binutils
      python39Packages.pyqt5
      hplip
+     p7zip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
