@@ -1,8 +1,12 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
 { config, pkgs, ... }:
 
 {
   imports =
-    [ 
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -32,7 +36,6 @@
   networking.hostName = "NatsuiroMatsuri"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
 
   networking.useDHCP = false;
@@ -49,7 +52,6 @@
      keyMap = "us";
   };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -78,7 +80,6 @@
   users.users.mys31f = {
      isNormalUser = true;
      extraGroups = [ "wheel" "adbusers" ];
-     shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
@@ -127,9 +128,11 @@
      ruby_3_0
      gcc
      binutils
-     python39Packages.pyqt5
      hplip
      p7zip
+     bibata-cursors
+     numix-icon-theme-circle
+     dracula-theme
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -179,8 +182,6 @@
   
   virtualisation.libvirtd.enable = true;
   
-  programs.zsh.enable = true; 
-
   hardware.opengl.enable = true;
 
  }
