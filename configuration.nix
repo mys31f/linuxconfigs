@@ -57,7 +57,6 @@
 
   services.xserver.desktopManager.cinnamon.enable = true;
   services.xserver.displayManager.lightdm.enable = true;
-  services.cinnamon.apps.enable = true;
 
   # Configure keymap in X11
   services.xserver.layout = "us";
